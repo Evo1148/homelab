@@ -1,0 +1,56 @@
+name: Validate Compose
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Show Docker Compose version
+        run: docker compose version
+
+      - name: Validate Uptime Kuma
+        working-directory: docker/uptime-kuma
+        run: docker compose config -q
+
+      - name: Validate Dockge
+        working-directory: docker/dockge
+        run: |
+          cp .env.example .env
+          docker compose config -q
+
+      - name: Validate Forgejo
+        working-directory: docker/forgejo
+        run: |
+          cp .env.example .env
+          docker compose config -q
+
+      - name: Validate Homepage
+        working-directory: docker/homepage
+        run: |
+          cp .env.example .env
+          docker compose config -q
+
+      - name: Validate Beszel
+        working-directory: docker/beszel
+        run: |
+          cp .env.example .env
+          cp agent.env.example agent.env
+          docker compose config -q
+
+      - name: Validate n8n
+        working-directory: docker/n8n
+        run: |
+          cp .env.example .env
+          docker compose config -q
