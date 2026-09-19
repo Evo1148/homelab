@@ -1,0 +1,40 @@
+services:
+  beszel:
+    image: henrygd/beszel:0.19.0
+    container_name: beszel
+    restart: unless-stopped
+
+    ports:
+      - "${BESZEL_PORT}:8090"
+
+    environment:
+      APP_URL: ${BESZEL_APP_URL}
+
+    volumes:
+      - /srv/docker/data/beszel/hub:/beszel_data
+      - /srv/docker/data/beszel/socket:/beszel_socket
+
+    healthcheck:
+      test: ["CMD", "/beszel", "health", "--url", "http://localhost:8090"]
+      interval: 120s
+      start_period: 10s
+      timeout: 5s
+      retries: 3
+
+  beszel-agent:
+    image: henrygd/beszel-agent:0.19.0
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+
+    env_file:
+      - ./agent.env
+
+    environment:
+      LISTEN: /beszel_socket/beszel.sock
+      HUB_URL: http://localhost:8090
+
+    volumes:
+      - /srv/docker/data/beszel/agent:/var/lib/beszel-agent
+      - /srv/docker/data/beszel/socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
