@@ -13,6 +13,7 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Uptime Kuma operational.
 - Dockge operational.
 - Forgejo operational with SSH authentication and real clone → commit → push validation.
+- Sanitized public Compose definitions published for Uptime Kuma, Dockge, Forgejo, Homepage, Beszel and n8n.
 
 ## In progress / next
 
@@ -20,9 +21,9 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Add secure remote access.
 - Mature NAS storage and monitoring.
 - Define backup policy for services and important data.
-- Add sanitized Compose examples to this repository.
 - Document recovery procedures.
 - Add infrastructure diagrams as the architecture grows.
+- Extend reproducible configuration beyond Docker where it provides clear value.
 
 ## Later
 
