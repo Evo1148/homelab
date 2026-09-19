@@ -20,7 +20,7 @@ This repository documents the architecture and reusable configuration of my pers
 
 The goal is not to mirror the server filesystem. Instead, it keeps the parts that are useful to understand, rebuild and evolve the platform: architecture, service layout, deployment patterns, networking decisions, storage design and operational notes.
 
-> **Status:** active development. Core virtualization, NAS access, Docker services, monitoring and self-hosted Git are operational.
+> **Status:** active development. Core virtualization, NAS access, Docker services, monitoring and self-hosted Git are operational. Sanitized Compose definitions for the current Docker stack are public.
 
 ## Architecture
 
@@ -38,6 +38,10 @@ flowchart TD
     DOCKER --> KUMA[Uptime Kuma]
     DOCKER --> DOCKGE[Dockge]
     DOCKER --> FORGEJO[Forgejo]
+    DOCKER --> HOMEPAGE[Homepage]
+    DOCKER --> BESZEL[Beszel]
+    DOCKER --> N8N[n8n]
+    N8N --> PG[PostgreSQL]
 ```
 
 A more detailed view is available in [docs/architecture.md](./docs/architecture.md).
@@ -52,29 +56,45 @@ A more detailed view is available in [docs/architecture.md](./docs/architecture.
 | Containers | Proxmox LXC |
 | Application runtime | Docker + Docker Compose |
 | Storage | Samba-based NAS, currently simple and migration-friendly |
-| Monitoring | Uptime Kuma |
+| Availability monitoring | Uptime Kuma |
+| Host/container monitoring | Beszel |
 | Container management | Dockge |
+| Dashboard | Homepage |
 | Git hosting | Forgejo |
+| Workflow automation | n8n + PostgreSQL |
 | Network management | UniFi |
 | Remote access | Planned / evolving |
+
+## Reproducible Docker deployments
+
+Public, sanitized deployment definitions are available for:
+
+- [Uptime Kuma](./docker/uptime-kuma/)
+- [Dockge](./docker/dockge/)
+- [Forgejo](./docker/forgejo/)
+- [Homepage](./docker/homepage/)
+- [Beszel](./docker/beszel/)
+- [n8n](./docker/n8n/)
+
+Each directory contains the Compose recipe and, when needed, safe environment templates. Runtime databases, credentials, tokens and service data stay outside Git.
 
 ## Repository layout
 
 ```text
 homelab/
 ├── docs/
-│   ├── architecture.md
-│   ├── network.md
-│   ├── storage.md
-│   └── roadmap.md
 ├── proxmox/
 ├── docker/
 │   ├── uptime-kuma/
 │   ├── dockge/
-│   └── forgejo/
+│   ├── forgejo/
+│   ├── homepage/
+│   ├── beszel/
+│   └── n8n/
 ├── nas/
 ├── networking/
 ├── monitoring/
+├── .gitattributes
 ├── .gitignore
 ├── README.md
 └── README.es.md
@@ -91,27 +111,9 @@ homelab/
 
 ## Security and privacy
 
-This public repository intentionally excludes:
+This public repository intentionally excludes passwords, tokens, API keys, private SSH keys, live environment files, application databases, backups, personal NAS data and machine-specific exports containing credentials.
 
-- passwords, tokens and API keys;
-- private SSH keys;
-- exact private-network addressing where it is not needed;
-- backups and service databases;
-- generated runtime state;
-- personal NAS data;
-- exported configurations containing credentials.
-
-Examples should use placeholders or sanitized values.
-
-## What this repository is for
-
-This repository is useful as:
-
-- a rebuild reference;
-- infrastructure documentation;
-- a place for reusable Compose files and configuration templates;
-- a record of architectural decisions;
-- a portfolio view of the HomeLab as an engineering project.
+Examples use sanitized values or placeholders.
 
 ## Roadmap
 
