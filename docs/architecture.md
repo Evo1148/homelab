@@ -1,6 +1,6 @@
 # Architecture
 
-The HomeLab is built around a small Proxmox host and separates infrastructure roles by guest.
+The HomeLab is built around a compact Proxmox host and separates infrastructure roles by guest.
 
 ## Physical layer
 
@@ -27,13 +27,16 @@ This separation keeps storage, network control and general application services 
 
 ## Docker services
 
-The Docker VM currently hosts:
+The public Docker service set currently contains:
 
-- **Uptime Kuma** for availability monitoring and alerting.
-- **Dockge** for Compose stack visibility and management.
-- **Forgejo** for self-hosted Git.
+- **Uptime Kuma** — availability monitoring and alerting.
+- **Dockge** — Compose stack visibility and management.
+- **Forgejo** — self-hosted Git.
+- **Homepage** — service dashboard.
+- **Beszel** — host and container monitoring.
+- **n8n + PostgreSQL** — workflow automation and its database.
 
-Compose files are intended to remain the declarative source of truth.
+The repository contains sanitized Compose definitions for all six stacks. Compose files are treated as the declarative deployment source; databases, credentials and runtime state remain outside Git.
 
 ## Design goals
 
@@ -48,7 +51,7 @@ Compose files are intended to remain the declarative source of truth.
 
 Exact production addresses are intentionally omitted from the public repository.
 
-Documentation should use examples such as:
+Documentation uses placeholders such as:
 
 ```text
 gateway:      192.168.x.1
