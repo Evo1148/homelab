@@ -1,0 +1,47 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# SSH
+id_rsa
+id_ed25519
+*.pub.private
+
+# Service data / databases
+data/
+volumes/
+backups/
+backup/
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+
+# Runtime / logs
+logs/
+*.log
+tmp/
+.cache/
+
+# Proxmox / infrastructure exports
+*.vma
+*.vma.zst
+*.conf.private
+exports/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
