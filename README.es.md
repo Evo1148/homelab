@@ -20,7 +20,7 @@ Este repositorio documenta la arquitectura y la configuración reutilizable de m
 
 El objetivo no es copiar el sistema de archivos del servidor a GitHub. Aquí se conservan las partes útiles para entender, reconstruir y evolucionar la plataforma: arquitectura, distribución de servicios, patrones de despliegue, decisiones de red, almacenamiento y notas operativas.
 
-> **Estado:** desarrollo activo. La virtualización base, acceso NAS, servicios Docker, monitorización y Git self-hosted están operativos.
+> **Estado:** desarrollo activo. La virtualización base, acceso NAS, servicios Docker, monitorización y Git self-hosted están operativos. Los Compose saneados del stack Docker actual ya son públicos.
 
 ## Arquitectura
 
@@ -38,6 +38,10 @@ flowchart TD
     DOCKER --> KUMA[Uptime Kuma]
     DOCKER --> DOCKGE[Dockge]
     DOCKER --> FORGEJO[Forgejo]
+    DOCKER --> HOMEPAGE[Homepage]
+    DOCKER --> BESZEL[Beszel]
+    DOCKER --> N8N[n8n]
+    N8N --> PG[PostgreSQL]
 ```
 
 Hay una vista más detallada en [docs/architecture.md](./docs/architecture.md).
@@ -52,29 +56,45 @@ Hay una vista más detallada en [docs/architecture.md](./docs/architecture.md).
 | Contenedores | Proxmox LXC |
 | Runtime de aplicaciones | Docker + Docker Compose |
 | Almacenamiento | NAS basado en Samba, simple y preparado para migrar |
-| Monitorización | Uptime Kuma |
+| Monitorización de disponibilidad | Uptime Kuma |
+| Monitorización host/contenedores | Beszel |
 | Gestión de contenedores | Dockge |
+| Dashboard | Homepage |
 | Git self-hosted | Forgejo |
+| Automatización | n8n + PostgreSQL |
 | Gestión de red | UniFi |
 | Acceso remoto | Planificado / en evolución |
+
+## Despliegues Docker reproducibles
+
+Hay definiciones públicas y saneadas para:
+
+- [Uptime Kuma](./docker/uptime-kuma/)
+- [Dockge](./docker/dockge/)
+- [Forgejo](./docker/forgejo/)
+- [Homepage](./docker/homepage/)
+- [Beszel](./docker/beszel/)
+- [n8n](./docker/n8n/)
+
+Cada carpeta contiene la receta Compose y, cuando hace falta, plantillas seguras de variables de entorno. Las bases de datos, credenciales, tokens y datos reales de los servicios permanecen fuera de Git.
 
 ## Estructura del repositorio
 
 ```text
 homelab/
 ├── docs/
-│   ├── architecture.md
-│   ├── network.md
-│   ├── storage.md
-│   └── roadmap.md
 ├── proxmox/
 ├── docker/
 │   ├── uptime-kuma/
 │   ├── dockge/
-│   └── forgejo/
+│   ├── forgejo/
+│   ├── homepage/
+│   ├── beszel/
+│   └── n8n/
 ├── nas/
 ├── networking/
 ├── monitoring/
+├── .gitattributes
 ├── .gitignore
 ├── README.md
 └── README.es.md
@@ -91,21 +111,9 @@ homelab/
 
 ## Seguridad y privacidad
 
-Este repositorio público excluye deliberadamente:
+Este repositorio público excluye deliberadamente contraseñas, tokens, API keys, claves SSH privadas, ficheros de entorno reales, bases de datos, backups, datos personales del NAS y exports específicos de máquina que contengan credenciales.
 
-- contraseñas, tokens y API keys;
-- claves SSH privadas;
-- direccionamiento privado exacto cuando no sea necesario;
-- backups y bases de datos de servicios;
-- estado generado en runtime;
-- datos personales del NAS;
-- exports de configuración que incluyan credenciales.
-
-Los ejemplos deben usar valores saneados o placeholders.
-
-## Para qué sirve este repositorio
-
-Sirve como referencia de reconstrucción, documentación de infraestructura, repositorio de configuraciones reutilizables y registro de decisiones arquitectónicas, además de mostrar el HomeLab como proyecto de ingeniería.
+Los ejemplos usan valores saneados o placeholders.
 
 ## Roadmap
 
