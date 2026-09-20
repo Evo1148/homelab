@@ -67,7 +67,7 @@ Hay una vista más detallada en [docs/architecture.md](./docs/architecture.md).
 
 ## AI Agent Stack
 
-H09 añade una capa local de agentes de IA alrededor de Hermes y OpenCode. **H09 Executor V0.1 ya está operativo** con routing determinista, verificación del repositorio, protección de archivos, auditoría persistente, rollback y escalado automático local-fast → local-heavy. Se publica además un benchmark de programación congelado con las configuraciones exactas probadas, resultados oficiales, prueba de deployment y análisis forense de fallos.
+H09 añade una capa local de agentes de IA alrededor de Hermes y OpenCode. **H09 Executor V0.1 ya está operativo** con routing determinista, verificación del repositorio, protección de archivos, auditoría persistente, rollback y escalado automático local-fast → local-heavy. Su primera tarea real de producción también se ha completado correctamente sobre CAD-AI mediante Hermes → H09 → OpenCode → local-fast → verifier. Se publica además un benchmark de programación congelado con las configuraciones exactas probadas, resultados oficiales, prueba de deployment y análisis forense de fallos.
 
 Roles actuales respaldados por evidencia:
 
