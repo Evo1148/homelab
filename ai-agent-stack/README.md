@@ -73,7 +73,7 @@ local-fast
   -> verifier
 ```
 
-This path has been exercised with real repository edits and independent audit artifacts. Cloud execution remains a future tier and is not yet implemented.
+This path has been exercised with real repository edits and independent audit artifacts. It has also completed its first real production task on CAD-AI: Hermes delegated a package-version inconsistency through `h09-coding`, H09 routed it to local-fast, Qwen3.5-9B changed exactly one source file, independent verification passed, and the orchestration completed in one attempt with `PASS / COMPLETE`. Cloud execution remains a future tier and is not yet implemented.
 
 Full executor architecture and validation notes:
 
