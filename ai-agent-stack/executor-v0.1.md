@@ -195,6 +195,43 @@ A real automatic escalation:
 - both attempts produced independent audit artifacts;
 - final result was `PASS / COMPLETE`.
 
+## First real production task
+
+After the validation gates were closed, H09 was exercised on a real issue in the public CAD-AI repository.
+
+Task:
+
+- `pyproject.toml` already declared version `0.2.0`;
+- `src/cad_ai/__init__.py` still exposed `__version__ = "0.1.0"`;
+- the repository policy protected tests, `pyproject.toml`, `.github/**` and the H09 policy itself.
+
+Result:
+
+- Hermes invoked the `h09-coding` skill;
+- H09 routed the task to `local-fast`;
+- OpenCode used Qwen3.5-9B Q6_K;
+- exactly one source file was modified;
+- the package version was aligned to `0.2.0`;
+- independent verification passed;
+- no protected files were changed;
+- no commit was created by the agent;
+- no heavy-model escalation was required;
+- the orchestration completed in a single attempt with `PASS / COMPLETE`.
+
+This was the first real production use of the complete path:
+
+```text
+User
+  -> Hermes
+  -> h09-coding
+  -> H09
+  -> OpenCode
+  -> local-fast
+  -> repository edit
+  -> verifier
+  -> PASS
+```
+
 ## Hermes integration
 
 Hermes exposes H09 through a dedicated local skill:
@@ -237,7 +274,7 @@ Published paths and examples are sanitized where appropriate.
 
 The next useful work is operational rather than more local-model benchmarking:
 
-1. Use the Hermes -> H09 path on real development tasks.
+1. Continue exercising Hermes -> H09 on real development tasks of increasing complexity.
 2. Improve task/result presentation from Hermes.
 3. Add cloud escalation only after the local workflow has enough real-world evidence.
 4. Keep the verifier and repository policy authoritative over model output.
