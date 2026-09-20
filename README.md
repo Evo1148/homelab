@@ -65,6 +65,18 @@ A more detailed view is available in [docs/architecture.md](./docs/architecture.
 | Network management | UniFi |
 | Remote access | Planned / evolving |
 
+## AI Agent Stack
+
+H09 adds a local AI-agent layer around Hermes and OpenCode. A frozen coding benchmark is published with the exact tested configurations, official results, deployment follow-up and failure forensics.
+
+Current evidence-backed roles:
+
+- **local-fast:** Qwen3.5-9B Q6_K
+- **local-heavy:** Qwen3.6-35B-A3B UD-Q4_K_M
+- **cloud:** escalation path for unresolved or policy-sensitive work
+
+See [ai-agent-stack/](./ai-agent-stack/) and the [2026-09-20 local coding benchmark](./ai-agent-stack/benchmarks/2026-09-20-local-coding/).
+
 ## Reproducible Docker deployments
 
 Public, sanitized deployment definitions are available for:
@@ -83,6 +95,7 @@ Each directory contains the Compose recipe and, when needed, safe environment te
 ```text
 homelab/
 ├── docs/
+├── ai-agent-stack/
 ├── proxmox/
 ├── docker/
 │   ├── uptime-kuma/
