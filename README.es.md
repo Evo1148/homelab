@@ -67,7 +67,7 @@ Hay una vista más detallada en [docs/architecture.md](./docs/architecture.md).
 
 ## AI Agent Stack
 
-H09 añade una capa local de agentes de IA alrededor de Hermes y OpenCode. Se publica un benchmark de programación congelado con las configuraciones exactas probadas, resultados oficiales, prueba de deployment y análisis forense de fallos.
+H09 añade una capa local de agentes de IA alrededor de Hermes y OpenCode. **H09 Executor V0.1 ya está operativo** con routing determinista, verificación del repositorio, protección de archivos, auditoría persistente, rollback y escalado automático local-fast → local-heavy. Se publica además un benchmark de programación congelado con las configuraciones exactas probadas, resultados oficiales, prueba de deployment y análisis forense de fallos.
 
 Roles actuales respaldados por evidencia:
 
@@ -75,7 +75,7 @@ Roles actuales respaldados por evidencia:
 - **local-heavy:** Qwen3.6-35B-A3B UD-Q4_K_M
 - **cloud:** escalado para tareas no resueltas o sensibles a políticas
 
-Consulta [ai-agent-stack/](./ai-agent-stack/) y el [benchmark local de programación del 2026-09-20](./ai-agent-stack/benchmarks/2026-09-20-local-coding/).
+Consulta [ai-agent-stack/](./ai-agent-stack/), [H09 Executor V0.1](./ai-agent-stack/executor-v0.1.md) y el [benchmark local de programación del 2026-09-20](./ai-agent-stack/benchmarks/2026-09-20-local-coding/).
 
 ## Despliegues Docker reproducibles
 
