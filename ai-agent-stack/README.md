@@ -17,7 +17,7 @@ Hermes / Router
             fallback / high-stakes tasks
 ```
 
-OpenCode is the repository-facing coding agent. Hermes is expected to orchestrate model selection, execution policy, verification and fallback.
+OpenCode is the repository-facing coding agent. Hermes now delegates repository modifications through **H09 Executor V0.1**, which provides deterministic routing, verification, protected-file enforcement, persistent audit, rollback and automatic local-fast → local-heavy escalation.
 
 ## Why two local tiers?
 
@@ -47,6 +47,37 @@ For repository tasks, the orchestration layer should check at least:
 5. Did it hit a step/time budget?
 6. Are hidden or independent invariants still satisfied?
 7. If local execution fails, should the task be escalated to the heavy local model or cloud?
+
+## Current executor status
+
+H09 Executor V0.1 was validated end to end on 2026-09-21.
+
+The production local path is:
+
+```text
+Hermes
+  -> H09 coding skill
+  -> deterministic router
+  -> OpenCode persistent server
+  -> local-fast
+  -> verifier
+```
+
+When the first local attempt fails in an escalation-eligible way:
+
+```text
+local-fast
+  -> failure
+  -> rollback to clean baseline
+  -> local-heavy
+  -> verifier
+```
+
+This path has been exercised with real repository edits and independent audit artifacts. Cloud execution remains a future tier and is not yet implemented.
+
+Full executor architecture and validation notes:
+
+[H09 Executor V0.1](./executor-v0.1.md)
 
 ## Benchmark archive
 
