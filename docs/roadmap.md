@@ -14,6 +14,7 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Dockge operational.
 - Forgejo operational with SSH authentication and real clone → commit → push validation.
 - Sanitized public Compose definitions published for Uptime Kuma, Dockge, Forgejo, Homepage, Beszel and n8n.
+- H09 AI Agent Stack local coding pipeline operational with Hermes, OpenCode, deterministic routing, verifier, protected-file policy, persistent audit, rollback and automatic local-fast → local-heavy escalation.
 
 ## In progress / next
 
@@ -24,6 +25,8 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Document recovery procedures.
 - Add infrastructure diagrams as the architecture grows.
 - Extend reproducible configuration beyond Docker where it provides clear value.
+- Exercise H09 Executor V0.1 on real development tasks and improve Hermes task/result presentation.
+- Design cloud escalation only after enough real-world evidence is collected from the validated local pipeline.
 
 ## Later
 
