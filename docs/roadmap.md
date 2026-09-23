@@ -21,6 +21,7 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Physical local-model fast → heavy → fast lifecycle validated.
 - Progress-aware execution validated.
 - HLC-001D through HLC-001G deterministic workflow integration validated.
+- HLC-001G real production-runner execution validated through OpenCode + Qwen3.5-9B, persisted ExecutionEvidence and VERIFYING state.
 
 ## In progress / next
 
@@ -34,7 +35,6 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Exercise H09 Executor V0.1 on additional real development tasks of increasing complexity and improve Hermes task/result presentation.
 - Design cloud escalation only after enough real-world evidence is collected from the validated local pipeline.
 
-- Complete the HLC-001G real-model end-to-end execution through H09AutoRunner.
 
 ## Later
 

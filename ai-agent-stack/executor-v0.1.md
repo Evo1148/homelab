@@ -318,4 +318,4 @@ Validated workflow:
 
 Additional validated properties include contract-hashed evidence, writer locking for mutating tasks, read-only no-lock semantics, fail-closed scope checks, persisted technical verification, Control Plane attempt fencing and lease renewal, physical local-model lifecycle switching and progress-aware execution.
 
-The deterministic runner boundary is validated. Real OpenCode + Qwen execution through the complete new workflow remains the next gate.
+The deterministic runner boundary and its real OpenCode + Qwen execution are now validated. The live HLC-001G task reached VERIFYING with persisted ExecutionEvidence, one authorized file changed, an unchanged Git HEAD, and no scope violation.

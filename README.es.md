@@ -157,8 +157,10 @@ Hitos actuales:
 - **HLC-001F** — composición del pipeline de ejecución/verificación: validado;
 - **HLC-001G** — boundary determinista del runner real: validado.
 
-El gate pendiente de HLC-001G es una ejecución real a través de:
+HLC-001G queda ahora validado mediante una ejecución real con modelo local a través de:
 
-`ExecutionBridge → ExecutionAdapter → H09AutoRunner → h09-code → h09-auto → OpenCode/Qwen → ExecutionEvidence`.
+`ExecutionBridge → ExecutionAdapter → H09AutoRunner → h09-code → h09-auto → OpenCode → Qwen3.5-9B → ExecutionEvidence → VERIFYING`.
 
-Esa ejecución con el modelo real todavía no se ha realizado intencionadamente.
+La tarea real modificó exactamente un archivo autorizado, mantuvo intacto el HEAD de Git, no creó ningún commit del agente, persistió `ExecutionEvidence` con `scope_violation=false` y superó correctamente el postflight. La ejecución permaneció en `local-fast`; no fue necesario escalar al modelo heavy.
+
+La composición determinista posterior de verificación permanece cubierta por HLC-001F.
