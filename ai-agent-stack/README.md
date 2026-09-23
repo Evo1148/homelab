@@ -96,3 +96,30 @@ Reproducibility and integrity notes:
 ## Security
 
 No API keys, passwords, model binaries, private environment files or live machine-specific credentials are stored here. Local paths and addresses are intentionally sanitized.
+
+## H09 platform update — 2026-09-23
+
+H09 has progressed beyond the initial Executor V0.1 validation.
+
+New validated capabilities include:
+
+- attempt fencing with per-attempt tokens, leases and stale-attempt rejection;
+- physical fast → heavy → fast local-model lifecycle management;
+- progress-aware execution with same-session continuation;
+- durable deterministic `ExecutionEvidence`;
+- hardened `ExecutionAdapter` scope enforcement and evidence persistence;
+- end-to-end `ExecutionBridge → ExecutionAdapter → VerificationBridge` composition;
+- deterministic `H09AutoRunner` integration with the real `h09-code → h09-auto` boundary.
+
+Current workflow milestones:
+
+- **HLC-001D** — deterministic execution evidence: validated;
+- **HLC-001E** — execution adapter and hardened evidence storage: validated;
+- **HLC-001F** — execution/verification pipeline composition: validated;
+- **HLC-001G** — deterministic real-runner boundary: validated.
+
+The remaining HLC-001G gate is a real execution through:
+
+`ExecutionBridge → ExecutionAdapter → H09AutoRunner → h09-code → h09-auto → OpenCode/Qwen → ExecutionEvidence`.
+
+That real-model execution has intentionally not been run yet.

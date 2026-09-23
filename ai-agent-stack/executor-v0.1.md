@@ -307,3 +307,15 @@ The next useful work is operational rather than more local-model benchmarking:
 2. Improve task/result presentation from Hermes.
 3. Add cloud escalation only after the local workflow has enough real-world evidence.
 4. Keep the verifier and repository policy authoritative over model output.
+
+## Workflow hardening — 2026-09-23
+
+Executor V0.1 remains the repository-facing coding engine, while the surrounding H09 platform now provides a deterministic task lifecycle.
+
+Validated workflow:
+
+`ProjectQueue → ExecutionBridge → ExecutionAdapter → H09AutoRunner → h09-code → h09-auto → ExecutionEvidence → VerificationBridge`
+
+Additional validated properties include contract-hashed evidence, writer locking for mutating tasks, read-only no-lock semantics, fail-closed scope checks, persisted technical verification, Control Plane attempt fencing and lease renewal, physical local-model lifecycle switching and progress-aware execution.
+
+The deterministic runner boundary is validated. Real OpenCode + Qwen execution through the complete new workflow remains the next gate.

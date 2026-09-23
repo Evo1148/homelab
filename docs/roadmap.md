@@ -17,6 +17,11 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - H09 AI Agent Stack local coding pipeline operational with Hermes, OpenCode, deterministic routing, verifier, protected-file policy, persistent audit, rollback and automatic local-fast → local-heavy escalation.
 - H09 Executor V0.1 first real production task completed successfully on CAD-AI through Hermes → h09-coding → local-fast → OpenCode → verifier, with one-file change, independent verification and no agent-created commit.
 
+- H09 Control Plane attempt fencing and lease renewal validated.
+- Physical local-model fast → heavy → fast lifecycle validated.
+- Progress-aware execution validated.
+- HLC-001D through HLC-001G deterministic workflow integration validated.
+
 ## In progress / next
 
 - Complete the UniFi controller deployment.
@@ -28,6 +33,8 @@ This roadmap reflects the current direction of the HomeLab. Items are promoted i
 - Extend reproducible configuration beyond Docker where it provides clear value.
 - Exercise H09 Executor V0.1 on additional real development tasks of increasing complexity and improve Hermes task/result presentation.
 - Design cloud escalation only after enough real-world evidence is collected from the validated local pipeline.
+
+- Complete the HLC-001G real-model end-to-end execution through H09AutoRunner.
 
 ## Later
 

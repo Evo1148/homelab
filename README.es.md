@@ -135,3 +135,30 @@ El trabajo actual y futuro está recogido en [docs/roadmap.md](./docs/roadmap.md
 ## Licencia
 
 Todavía no se ha seleccionado una licencia. Hasta que se añada una, se aplican las reglas de copyright por defecto.
+
+## Actualización de H09 — 2026-09-23
+
+H09 ha avanzado significativamente desde la validación inicial de Executor V0.1.
+
+Las nuevas capacidades validadas incluyen:
+
+- fencing de intentos mediante tokens, leases y rechazo de intentos obsoletos;
+- lifecycle físico fast → heavy → fast de los modelos locales;
+- ejecución consciente del progreso con continuación de la misma sesión;
+- `ExecutionEvidence` determinista y persistente;
+- `ExecutionAdapter` endurecido con control de scope y persistencia de evidencia;
+- composición end-to-end `ExecutionBridge → ExecutionAdapter → VerificationBridge`;
+- integración determinista de `H09AutoRunner` con el boundary real `h09-code → h09-auto`.
+
+Hitos actuales:
+
+- **HLC-001D** — evidencia determinista de ejecución: validado;
+- **HLC-001E** — adapter y almacenamiento de evidencia endurecido: validado;
+- **HLC-001F** — composición del pipeline de ejecución/verificación: validado;
+- **HLC-001G** — boundary determinista del runner real: validado.
+
+El gate pendiente de HLC-001G es una ejecución real a través de:
+
+`ExecutionBridge → ExecutionAdapter → H09AutoRunner → h09-code → h09-auto → OpenCode/Qwen → ExecutionEvidence`.
+
+Esa ejecución con el modelo real todavía no se ha realizado intencionadamente.
